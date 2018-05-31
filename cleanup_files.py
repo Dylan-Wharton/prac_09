@@ -52,7 +52,6 @@ def main():
             new_name = get_fixed_filename(old_name)
             os.rename(old_name, new_name)
         os.chdir(lyrics_path)
-        # TODO: add a loop (in between directory changes) to rename the files
 
 
 def get_fixed_filename(filename):
