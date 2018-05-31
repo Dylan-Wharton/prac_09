@@ -48,6 +48,9 @@ def main():
         # then change back to the lyrics_path
         os.chdir(directory_name)
         print("Current working directory: {}".format(os.getcwd()))
+        for old_name in filenames:
+            new_name = get_fixed_filename(old_name)
+            os.rename(old_name, new_name)
         os.chdir(lyrics_path)
         # TODO: add a loop (in between directory changes) to rename the files
 
