@@ -7,12 +7,6 @@ def main():
     os.chdir('FilesToSort')
     make_folders()
 
-    files_list = {}
-    for filename in os.listdir('.'):
-        filename, file_extension = os.path.splitext(filename)
-        files_list[filename] = file_extension
-    print(files_list)
-
     for file in os.listdir('.'):
         sort_files(file)
 
