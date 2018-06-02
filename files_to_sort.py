@@ -3,66 +3,24 @@ import shutil
 
 
 def main():
-
     os.chdir('FilesToSort')
-    make_folders()
+    file_types = []
+    for file in os.listdir('.'):
+        file_name, file_extension = os.path.splitext(file)
+        new_folder = file_extension.replace(".", "")
+        if new_folder not in file_types:
+            file_types.append(new_folder)
+    print(file_types)
+
+    for extension in file_types:
+        try:
+            os.mkdir(extension)
+        except FileExistsError:
+            pass
 
     for file in os.listdir('.'):
-        sort_files(file)
-
-
-def sort_files(file):
-    if file.endswith(".xlsx"):
-        shutil.move(file, 'xlsx')
-    elif file.endswith(".xls"):
-        shutil.move(file, 'xls')
-    elif file.endswith(".txt"):
-        shutil.move(file, 'txt')
-    elif file.endswith(".png"):
-        shutil.move(file, 'png')
-    elif file.endswith(".jpg"):
-        shutil.move(file, 'jpg')
-    elif file.endswith(".gif"):
-        shutil.move(file, 'gif')
-    elif file.endswith(".docx"):
-        shutil.move(file, 'docx')
-    elif file.endswith(".doc"):
-        shutil.move(file, 'doc')
-
-
-def make_folders():
-    try:
-        os.mkdir('xlsx')
-    except FileExistsError:
-        pass
-    try:
-        os.mkdir('xls')
-    except FileExistsError:
-        pass
-    try:
-        os.mkdir('txt')
-    except FileExistsError:
-        pass
-    try:
-        os.mkdir('png')
-    except FileExistsError:
-        pass
-    try:
-        os.mkdir('jpg')
-    except FileExistsError:
-        pass
-    try:
-        os.mkdir('gif')
-    except FileExistsError:
-        pass
-    try:
-        os.mkdir('docx')
-    except FileExistsError:
-        pass
-    try:
-        os.mkdir('doc')
-    except FileExistsError:
-        pass
-
+        file_name, file_extension = os.path.splitext(file)
+        new_folder = file_extension.replace(".", "")
+        shutil.move(file, new_folder)
 
 main()
